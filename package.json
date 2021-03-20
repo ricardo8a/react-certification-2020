@@ -22,7 +22,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint ./src --ext .js,.jsx",
     "lint:fix": "eslint ./src --ext .js,.jsx --fix",
-    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
+    "coverage": "react-scripts test --env=jsdom --watchAll=false --coverage"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^18.2.0",
@@ -40,11 +41,7 @@
     "pretty-quick": "^3.0.0"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -52,11 +49,7 @@
     ]
   },
   "lint-staged": {
-    "*.{js, jsx, css, json}": [
-      "yarn run lint:fix",
-      "pretty-quick --staged",
-      "git add"
-    ]
+    "*.{js, jsx, css, json}": ["yarn run lint:fix", "pretty-quick --staged", "git add"]
   },
   "husky": {
     "hooks": {
