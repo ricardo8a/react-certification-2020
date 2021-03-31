@@ -1,8 +1,11 @@
 import React from 'react';
 
+
+  //<div className="inline-block px-2 w-64 h-64">
+  // <div className="bg-white rounded-lg overflow-hidden shadow-xl my-8 py-4">
 const VideoItem = ({ item }) => (
-  <div className="inline-block px-2 w-64 h-64">
-    <div className="bg-white rounded-lg overflow-hidden shadow-xl my-8 py-4">
+  <div className="bg-white p-2 rounded shadow-xl my-2 py-4">
+    <div>
       <img
         src={item.snippet.thumbnails.default.url}
         alt="movieimage"
