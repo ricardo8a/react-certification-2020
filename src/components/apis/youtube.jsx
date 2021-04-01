@@ -1,5 +1,5 @@
 import axios from 'axios';
-const KEY = 'AIzaSyCYEY5Y0BmPZ9_pxKhGVEVmMJVztsIPYFQ';
+const KEY = '';
 
 //https://www.googleapis.com/youtube/v3/search?q=wizeline&part=snippet&key=AIzaSyCYEY5Y0BmPZ9_pxKhGVEVmMJVztsIPYFQ
 export default axios.create({
