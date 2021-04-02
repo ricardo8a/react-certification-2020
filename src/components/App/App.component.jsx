@@ -16,25 +16,25 @@ const App = () => {
   };
 
   const fetchData = useCallback(async () => {
-    if (useMock) {
-      mockData();
-    } else {
-      try {
-        const response = await youtube.get('/search', {
-          params: {
-            q: searchTerm,
-          },
-        });
-        setVideos(response.data.items);
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      const response = await youtube.get('/search', {
+        params: {
+          q: searchTerm,
+        },
+      });
+      setVideos(response.data.items);
+    } catch (error) {
+      console.log(error);
     }
-  }, [searchTerm, useMock]);
+  }, [searchTerm]);
 
   const findVideos = (keySearch) => {
     setSearchTerm(keySearch);
-    fetchData();
+    if (useMock) {
+      mockData();
+    } else {
+      fetchData();
+    }
   };
 
   useEffect(() => {
