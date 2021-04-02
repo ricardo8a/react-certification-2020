@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Header = ({ profile, findVideos }) => {
-  const [keySearch, setKeySearch] = useState('Globant');
+  const [keySearch, setKeySearch] = useState('wizeline');
 
   const handleSubmit = (event) => {
     event.preventDefault();

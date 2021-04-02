@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import env from 'react-dotenv';
 
 import Header from '../Header';
 import Content from '../Content';
@@ -7,8 +8,8 @@ import mockedData from '../../youtube-videos-mock.json';
 
 const App = () => {
   const [videos, setVideos] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('Globant');
-  const useMock = true;
+  const [searchTerm, setSearchTerm] = useState('wizeline');
+  const useMock = env.MOCK;
 
   const mockData = () => {
     setVideos(mockedData.items);
