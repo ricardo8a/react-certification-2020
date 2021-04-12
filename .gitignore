@@ -7,10 +7,15 @@
 
 # testing
 /coverage
-
+/lcov-report
+clover.xml-name-validator
+coverage-final.json
+clover.xml
+lcov.info
 # production
 /build
-
+.env
+env.js
 # misc
 .DS_Store
 .env.local
@@ -21,3 +26,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
