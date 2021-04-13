@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Header from '../components/Header';
 import GlobalProvider from '../state/GlobalProvider';
+import App from '../components/App';
 
 describe('Test Set for the componet Header', () => {
   it('Reneder Header', () => {
     render(
       <GlobalProvider>
-        <Header profile="User" />
+        <App />
       </GlobalProvider>
     );
     const linkElement = screen.getByText(/User/i);
