@@ -4,12 +4,15 @@ import env from 'react-dotenv';
 import Header from '../Header';
 import Content from '../Content';
 import youtube from '../apis/youtube';
+import { useGlobalContext } from '../../state/GlobalProvider';
 import mockedData from '../../youtube-videos-mock.json';
 
 const App = () => {
+  const { state, dispatch } = useGlobalContext();
   const [videos, setVideos] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('wizeline');
   const useMock = env.MOCK;
+  const query = state.searchText;
+  const theme = state.darkMode ? 'dark' : '';
 
   const mockData = () => {
     setVideos(mockedData.items);
@@ -19,17 +22,19 @@ const App = () => {
     try {
       const response = await youtube.get('/search', {
         params: {
-          q: searchTerm,
+          q: query,
+          maxResults: 50,
         },
       });
       setVideos(response.data.items);
     } catch (error) {
       console.log(error);
+      mockData();
     }
-  }, [searchTerm]);
+  }, [query]);
 
   const findVideos = (keySearch) => {
-    setSearchTerm(keySearch);
+    dispatch({ type: 'CHANGE_SEARCH_TEXT', payload: keySearch });
     if (useMock) {
       mockData();
     } else {
@@ -42,7 +47,7 @@ const App = () => {
   }, [fetchData]);
 
   return (
-    <div>
+    <div className={theme}>
       <Header profile="User" findVideos={findVideos} />
       <Content title="Ricardo Díaz Challenge!" itemVideosToShow={videos} />
     </div>

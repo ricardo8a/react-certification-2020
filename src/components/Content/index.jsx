@@ -17,11 +17,11 @@ const Content = ({ title, itemVideosToShow }) => {
 
   return (
     <div>
-      <div className="py-10 text-center">
+      <div className="py-10 text-center dark:text-gray-200 dark:bg-gray-800">
         <h1 className="font-extrabold text-4xl">{title}</h1>
       </div>
 
-      <div className="bg-blue-400 min-h-screen fex items-center justify-center">
+      <div className="bg-blue-400 dark:bg-gray-800 min-h-screen fex items-center justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-4">
           {home &&
             itemVideosToShow.map((videoItem) => (
@@ -33,9 +33,11 @@ const Content = ({ title, itemVideosToShow }) => {
               />
             ))}
         </div>
-        {!home && <VideoDetailView videoToPlay={seletectVideo} videos={itemVideosToShow} />}
         {!home && (
-          <div onClick={goHome} aria-hidden="true">
+          <VideoDetailView videoToPlay={seletectVideo} videos={itemVideosToShow} />
+        )}
+        {!home && (
+          <div className="dark:text-gray-200" onClick={goHome} aria-hidden="true">
             Back home
           </div>
         )}

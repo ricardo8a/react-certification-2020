@@ -5,7 +5,7 @@ import VideoItem from '../VideoItem';
 const VideoDetailView = ({ videoToPlay, videos }) => {
   return (
     <div className="grid grid-cols-3">
-      <div className="col-span-2 bg-white p-2 rounded shadow-xl my-2 py-4">
+      <div className="col-span-2 bg-white dark:bg-indigo-400 p-2 rounded shadow-xl my-2 py-4">
         <VideoDetail video={videoToPlay} />
       </div>
       <div>
