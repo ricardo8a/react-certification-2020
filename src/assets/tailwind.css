@@ -8,3 +8,7 @@ input:checked ~ .dot {
   transform: translateX(100%);
   background-color: #000;
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
