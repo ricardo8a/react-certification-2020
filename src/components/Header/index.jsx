@@ -1,9 +1,17 @@
 import React from 'react';
-
+import { NavLink as RouterNavLink } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useGlobalContext } from '../../state/GlobalProvider';
 
-const Header = ({ profile, findVideos }) => {
+const Header = ({ findVideos }) => {
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
   const { state, dispatch } = useGlobalContext();
+
+  const logoutWithRedirect = () =>
+    logout({
+      returnTo: window.location.origin,
+    });
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,7 +59,44 @@ const Header = ({ profile, findVideos }) => {
               </div>
             </label>
           </div>
-          <div className="dark:text-gray-200">Profile: {profile}</div>
+          {isAuthenticated && (
+            <div className="p-10">
+              <div className="dropdown inline-block relative">
+                <button
+                  type="button"
+                  className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
+                >
+                  <span className="mr-1">{user.name}</span>
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{' '}
+                  </svg>
+                </button>
+                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
+                  <li className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                    {user.email}
+                  </li>
+                  <li className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                    <RouterNavLink
+                      to="#"
+                      id="qsLogoutBtn"
+                      onClick={() => logoutWithRedirect()}
+                    >
+                      Log out
+                    </RouterNavLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
+          {!isAuthenticated && (
+            <button id="qsLoginBtn" type="button" onClick={() => loginWithRedirect()}>
+              Log In
+            </button>
+          )}
         </div>
       </div>
     </nav>

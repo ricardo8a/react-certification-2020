@@ -3,7 +3,7 @@ import React, { createContext, useContext, useReducer } from 'react';
 import reducer from './GlobalReducer';
 
 const initState = {
-  searchText: 'Globant',
+  searchText: 'wizeline',
   darkMode: false,
 };
 
